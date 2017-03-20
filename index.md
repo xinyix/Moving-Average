@@ -5,7 +5,7 @@ We will be using the following library
 library(forecast)
 ```
 
-### 12-Term Centered Moving Average for the Monthly Start Series
+### 12-Term Centered Moving Averages for the Monthly Start Series
 
 ```
 housing <- read.csv("Monthly_US_Housing_Starts_Private_Single_1965_1975.csv", header=FALSE)
@@ -26,3 +26,7 @@ lines(housing_12ma, type="l", col="red")
 legend("topright", legend=c("Time Series", "12-Term MA"), col=c("blue", "red"), lty=1:1)
 ```
 ![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/housing.png?raw=true)
+
+Moving averages allows us to estimate the trend-cycle at time t by averaging values of the time series within some periods of t. Averaging (applying equal weights) to the observations around a point eliminates the randomness in the data. Thus the resulting curve shows a smoothed trend of our data. 
+
+### 4-Term Centered Moving Averages for the Quarterly Expenditure Series
