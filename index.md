@@ -52,6 +52,10 @@ The (3x3)-Term Moving Averages of the demand series is given by first applying a
 ```
 demand <- read.csv("Monthly_Demand_Repair_Parts_Iowa_1972_1979.csv", header=FALSE)
 demand <- as.vector(ts(demand, frequency=12))
+> demand
+ [1]  954  765  867  940  913 1014  801  990  712  959  828  965  915  891  991  971 1129 1091 1195 1295 1046 1121 1033 1222 1199 1012 1404 1137 1421 1162 1639 1545 1420
+[34] 1916 1491 1295 1764 1727 1654 1811 1520 1635 1984 1898 1853 2015 1709 1667 1625 1562 2121 1783 1474 1657 1746 1763 1517 1457 1388 1501 1227 1342 1666 2091 1629 1451
+[67] 1727 1736 1952 1420 1345  842 1576 1485 1928 2072 1887 2175 2199 1961 2091 1993 1595 1372 1607 1871 2594 1743 2267 2602 2565 2567 2344 2805
 
 demand_3ma <- ma(demand, order=3, centre=TRUE)
 demand_3x3ma <- ma(demand_3ma, order=3, centre=TRUE) 
@@ -64,3 +68,19 @@ legend("topright", legend=c("Time Series", "3x3-Term MA"), col=c("blue", "red"),
 We can see the smoothed series (in red) traces out the approximate ups and downs in our data, however, a larger order of moving averages would smooth out the series even further. An example is the 12-Term Moving Averages shown above. 
 
 Next we smooth the series using Henderson's Five-Term Moving Averages. We first obtain the weights of a Five-Term Moving Averages, the function henderson(n) returns the weights of a n-Term Moving Averages and is attached at the end
+```
+H5_wts <- henderson(5)
+
+n <- length(demand)
+demand_H5 <- matrix(NA, 1, n)
+
+for (i in 3:(n-2)) {
+	demand_H5[i] <- H5_wts %*% demand[(i-2):(i+2)]
+}
+
+plot(demand, type="l", col="blue", ylab="Monthly Demand (in thousands of dollors)", xlab="Months since Jan 1972", main="Monthly Demand for Repair Parts \n for a Large Heavy-Equipment Manufacture in Iowa")
+lines(as.vector(demand_H5), type="l", col="red")
+legend("topright", legend=c("Time Series", "Henderson(5) MA"), col=c("blue", "red"), lty=1:1)
+```
+![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/demand_H5ma.png?raw=true)
+
