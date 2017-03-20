@@ -47,7 +47,7 @@ legend("topright", legend=c("Time Series", "4-Term MA"), col=c("blue", "red"), l
 
 The plot above shows the trend of order 4 for the expenditure series. 
 
-### (3x3)-Term Moving Averages and Henderson's Five-Term Moving Averages for the demand series
+### (3x3)-Term Moving Averages and Henderson's Five-Term Moving Averages for the Demand Series
 The (3x3)-Term Moving Averages of the demand series is given by first applying a 3-Term Centered Moving Averages, then apply it again on the resulting series. 
 ```
 demand <- read.csv("Monthly_Demand_Repair_Parts_Iowa_1972_1979.csv", header=FALSE)
@@ -84,3 +84,4 @@ legend("topright", legend=c("Time Series", "Henderson(5) MA"), col=c("blue", "re
 ```
 ![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/demand_H5ma.png?raw=true)
 
+Compared to the (3x3)-Term Moving Average, the Henderson's 5-Term approach traces out the approximate fluctuations in the series more closely. 
