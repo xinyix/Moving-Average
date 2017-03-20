@@ -25,4 +25,4 @@ plot(housing, type="l", col="blue", ylab="Monthly Starts (in thousands of units)
 lines(housing_12ma, type="l", col="red")
 legend("topright", legend=c("Time Series", "12-Term MA"), col=c("blue", "red"), lty=1:1)
 ```
-![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/sales.png?raw=true)
+![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/housing.png?raw=true)
