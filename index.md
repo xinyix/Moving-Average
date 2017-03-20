@@ -46,3 +46,21 @@ legend("topright", legend=c("Time Series", "4-Term MA"), col=c("blue", "red"), l
 ![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/expenditures.png?raw=true)
 
 The plot above shows the trend of order 4 for the expenditure series. 
+
+### (3x3)-Term Moving Averages and Henderson's Five-Term Moving Averages for the demand series
+The (3x3)-Term Moving Averages of the demand series is given by first applying a 3-Term Centered Moving Averages, then apply it again on the resulting series. 
+```
+demand <- read.csv("Monthly_Demand_Repair_Parts_Iowa_1972_1979.csv", header=FALSE)
+demand <- as.vector(ts(demand, frequency=12))
+
+demand_3ma <- ma(demand, order=3, centre=TRUE)
+demand_3x3ma <- ma(demand_3ma, order=3, centre=TRUE) 
+
+plot(demand, type="l", col="blue", ylab="Monthly Demand (in thousands of dollors)", xlab="Months since Jan 1972", main="Monthly Demand for Repair Parts \n for a Large Heavy-Equipment Manufacture in Iowa")
+lines(demand_3x3ma, type="l", col="red")
+legend("topright", legend=c("Time Series", "3x3-Term MA"), col=c("blue", "red"), lty=1:1)
+```
+![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/demand_3x3ma.png?raw=true)
+We can see the smoothed series (in red) traces out the approximate ups and downs in our data, however, a larger order of moving averages would smooth out the series even further. An example is the 12-Term Moving Averages shown above. 
+
+Next we smooth the series using Henderson's Five-Term Moving Averages. We first obtain the weights of a Five-Term Moving Averages, the function henderson(n) returns the weights of a n-Term Moving Averages and is attached at the end
