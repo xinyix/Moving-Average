@@ -1,11 +1,11 @@
-### Moving Averages
+## Moving Averages
 We will be using the following library
 
 ```
 library(forecast)
 ```
 
-## 12-Term Centered Moving Average for the Monthly Start Series
+### 12-Term Centered Moving Average for the Monthly Start Series
 
 ```
 housing <- read.csv("Monthly_US_Housing_Starts_Private_Single_1965_1975.csv", header=FALSE)
