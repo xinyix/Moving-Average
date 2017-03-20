@@ -33,6 +33,9 @@ Moving averages allows us to estimate the trend-cycle at time t by averaging val
 ```
 expenditures <- read.csv("Quarterly_US_Plant_Equip_Expenditures_1964_1976.csv", header=FALSE)
 expenditures <- as.vector(ts(expenditures, frequency=4))
+> expenditures
+ [1] 10.00 11.85 11.70 13.42 11.20 13.63 13.65 15.93 13.33 16.05 15.92 18.22 14.46 16.69 16.20 18.12 15.10 16.85 16.79 19.03 16.04 18.81 19.25 21.46 17.47 20.33 20.26 21.66
+[29] 17.68 20.60 20.14 22.79 19.38 22.01 21.86 25.20 21.50 24.73 25.04 28.48 24.10 28.16 28.23 31.92 25.82 28.43 27.79 30.74 25.87 29.70 30.41 34.52
 
 expenditures_4ma <- ma(expenditures, order=4, centre=TRUE)
 
@@ -41,3 +44,5 @@ lines(expenditures_4ma, type="l", col="red")
 legend("topright", legend=c("Time Series", "4-Term MA"), col=c("blue", "red"), lty=1:1)
 ```
 ![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/expenditures.png?raw=true)
+
+The plot above shows the trend of order 4 for the expenditure series. 
