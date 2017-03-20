@@ -86,6 +86,7 @@ legend("topright", legend=c("Time Series", "Henderson(5) MA"), col=c("blue", "re
 
 Compared to the (3x3)-Term Moving Average, the Henderson's 5-Term approach traces out the approximate fluctuations in the series more closely. 
 
+The function henderson(n) is provided below
 ```
 ## The following code is provided by simonholgate
 ## You can find it here: https://github.com/simonholgate/R-Scripts/blob/master/henderson.R
