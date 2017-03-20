@@ -27,6 +27,17 @@ legend("topright", legend=c("Time Series", "12-Term MA"), col=c("blue", "red"), 
 ```
 ![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/housing.png?raw=true)
 
-Moving averages allows us to estimate the trend-cycle at time t by averaging values of the time series within some periods of t. Averaging (applying equal weights) to the observations around a point eliminates the randomness in the data. Thus the resulting curve shows a smoothed trend of our data. 
+Moving averages allows us to estimate the trend-cycle at time t by averaging values of the time series within some periods of t. Averaging (applying equal weights) to the observations around a point eliminates the randomness in the data. Thus in the plot shown above, the resulting curve (in red) represents a smoothed trend of our data. 
 
 ### 4-Term Centered Moving Averages for the Quarterly Expenditure Series
+```
+expenditures <- read.csv("Quarterly_US_Plant_Equip_Expenditures_1964_1976.csv", header=FALSE)
+expenditures <- as.vector(ts(expenditures, frequency=4))
+
+expenditures_4ma <- ma(expenditures, order=4, centre=TRUE)
+
+plot(expenditures, type="l", col="blue", ylab="Quarterly Expenditures (in billions of dollors)", xlab="Quarters since First Quarter in 1964", main="Quarterly New Plant and Equipment Expenditures in US Industries")
+lines(expenditures_4ma, type="l", col="red")
+legend("topright", legend=c("Time Series", "4-Term MA"), col=c("blue", "red"), lty=1:1)
+```
+![original resid dist](https://github.com/xinyix/Moving-Average/blob/master/expenditures.png?raw=true)
